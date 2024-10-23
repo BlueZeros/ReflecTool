@@ -1,0 +1,43 @@
+{
+  "score": 0.0,
+  "count": 1,
+  "fail_exec": 0,
+  "args": {
+    "seed": 0,
+    "workers": 10,
+    "data_path": "./ClinicalAgentBench",
+    "output_path": "./results/test/medqa/reflectool_refine-qwen2-7b-few_shot_1-all_wo_mm-task_memory",
+    "task_name": "test",
+    "test_split": "medqa",
+    "test_number": -1,
+    "test_idx": -1,
+    "resume": true,
+    "vllm_serve": false,
+    "vllm_serve_url": "http://localhost:8000",
+    "agent": "reflectool",
+    "model": "qwen2-7b",
+    "exp_name": "reflectool_refine-qwen2-7b-few_shot_1-all_wo_mm-task_memory",
+    "actions": [
+      "all_wo_mm"
+    ],
+    "max_exec_steps": 15,
+    "force_action": true,
+    "preload_multimodal": false,
+    "reflect_iter": 1,
+    "clinical_reflect_num": 2,
+    "action_search": "refine",
+    "action_guide_path": "./ClinicalAgentBench/memory/task/tool_experience/medqa.json",
+    "load_action_params": null,
+    "few_shot": 1,
+    "memory_path": "./ClinicalAgentBench/memory/task/long_term_memory/medqa",
+    "update_freq": 1,
+    "memory_type": "standard",
+    "memory_wo_reflect": false,
+    "write_memory": false,
+    "log_print": true,
+    "prompt_debug": true,
+    "log_file_name": "./results/test/medqa/reflectool_refine-qwen2-7b-few_shot_1-all_wo_mm-task_memory/agent.log",
+    "cache_file_name": "./results/test/medqa/reflectool_refine-qwen2-7b-few_shot_1-all_wo_mm-task_memory/cache.jsonl",
+    "result_file_name": "./results/test/medqa/reflectool_refine-qwen2-7b-few_shot_1-all_wo_mm-task_memory/result.json"
+  }
+}

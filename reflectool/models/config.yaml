@@ -1,0 +1,25 @@
+qwen1.5-1.8b: /mnt/hwfile/medai/LLMModels/Model/Qwen1.5-1.8B-Chat
+qwen1.5-7b: /mnt/hwfile/medai/LLMModels/Model/Qwen1.5-7B-Chat
+qwen1.5-14b: /mnt/hwfile/medai/LLMModels/Model/Qwen1.5-14B-Chat
+qwen1.5-32b: /mnt/hwfile/medai/LLMModels/Model/Qwen1.5-32B-Chat
+qwen2-7b: /mnt/hwfile/medai/LLMModels/Model/Qwen2-7B-Instruct-lys
+qwen2-72b: /mnt/hwfile/medai/LLMModels/Model/Qwen2-72B-Instruct-GPTQ-Int4
+llama3-8b: /mnt/hwfile/medai/LLMModels/Model/Meta-Llama-3-8B-Instruct
+llama3-70b: /mnt/hwfile/medai/LLMModels/Model/Meta-Llama-3-70B-Instruct-GPTQ
+llama3.1-8b: /mnt/hwfile/medai/LLMModels/Model/Meta-Llama-3.1-8B-Instruct
+llama3.1-70b: /mnt/hwfile/medai/LLMModels/Model/Meta-Llama-3.1-70B-Instruct-AWQ-INT4
+meditron-7b: /mnt/hwfile/medai/LLMModels/Model/meditron-7b
+medllama3-8b: /mnt/hwfile/medai/LLMModels/Model/MedLlama-3-8b-v2.0
+huatuo-vision-7b: /mnt/hwfile/medai/LLMModels/Model/HuatuoGPT-Vision-7B
+huatuo-vision-34b: /mnt/hwfile/medai/LLMModels/Model/HuatuoGPT-Vision-34B
+minicpm-v-2.6: /mnt/hwfile/medai/LLMModels/Model/MiniCPM-V-2_6
+internvl-chat-v1.5: /mnt/hwfile/medai/LLMModels/Model/InternVL-Chat-V1-5
+llavamedpp: /mnt/hwfile/medai/LLMModels/Model/LLaVA-Med-Captioner/llava-llama-med-8b-captioner
+
+
+
+
+
+  
+
+

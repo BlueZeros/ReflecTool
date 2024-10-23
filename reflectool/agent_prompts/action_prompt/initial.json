@@ -1,0 +1,88 @@
+{
+    "Think": {
+        "action_name": "Think",
+        "action_desc": "Conduct thinking and reasoning process for solving task.",
+        "params_doc": {
+            "response": "this is your thinking response. Be specific and critical."
+        }
+    },
+    "Plan": {
+        "action_name": "Plan",
+        "action_desc": "Plan step-by-step solutions for a task. Usually take at the beginning of the solving process.",
+        "params_doc": {
+            "response": "this is the generated plans. Should decompose the task instructions as easy to execute steps."
+        }
+    },
+    "Finish": {
+        "action_name": "Finish",
+        "action_desc": "Complete the task with a response.",
+        "params_doc": {
+            "response": "this is the finish action response. Respond with the final answer directly without other words."
+        }
+    },
+    "Calculator": {
+        "action_name": "Calculator",
+        "action_desc": "Use this action to perform mathematical calculations.",
+        "params_doc": {
+            "expression": "this requires a mathematical expression in python code style to calculate the results, such as '23.5 + 34' or '1.9 ** 2 / 60'."
+        }
+    },
+    "UMLS": {
+        "action_name": "UMLS",
+        "action_desc": "Use this action to query the definition and the related medical concept of the medical_terminology.",
+        "params_doc": {
+            "medical_terminology": "Biomedical terminology, should be a phrase or a word"
+        }
+    },
+    "Medrag": {
+        "action_name": "Medrag",
+        "action_desc": "Use this action to retrive medical knolwedge from the pubmed, textbooks, and statpearls to solve problems.",
+        "params_doc": {
+            "query": "this is the query to search knowledge"
+        }
+    },
+    "LoadDB": {
+        "action_name": "LoadDB",
+        "action_desc": "Use this action to load the table coloum information from SQL Data Base.",
+        "params_doc": {
+            "sql_database": "this is the path to the sql data base"
+        }
+    },
+    "SQLExecutor": {
+        "action_name": "SQLExecutor",
+        "action_desc": "Use this action to get information from SQL Data Base with SQL query.",
+        "params_doc": {
+            "sql_database": "this is the path to the sql data base",
+            "sql_query": "this is the sql query to get information from the sql_database"
+        }
+    },
+    "EntityRecognizor": {
+        "action_name": "EntityRecognizor",
+        "action_desc": "Using this action to recognize the biomedical entities in the sentence.",
+        "params_doc": {
+            "sentence": "Sentences to be recognized the entities."
+        }
+    },
+    "LongDocRAG": {
+        "action_name": "LongDocRAG",
+        "action_desc": "Using this action to construct a retrival knowledge base from the upload files and query the information from the knowledge base.",
+        "params_doc": {
+            "path": "The path of the upload files, can either be a folder or a file",
+            "query": "the query to search information"
+        }
+    },
+    "GoogleSearch": {
+        "action_name": "GoogleSearch",
+        "action_desc": "Using this action to search online content with google.",
+        "params_doc": {
+            "query": "the search string. be simple."
+        }
+    },
+    "DrugBank": {
+        "action_name": "DrugBank",
+        "action_desc": "Use this action to search the information about specific drug",
+        "params_doc": {
+            "drug_name": "this is the name of the drug to be searched"
+        }
+    }
+}

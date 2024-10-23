@@ -1,0 +1,379 @@
+Metadata-Version: 2.1
+Name: reflectool
+Version: 1.0.0
+Summary: REFLECTOOL: Towards Reflection-Aware Tool-Augmented Clinical Agents
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: bitsandbytes==0.41.0
+Requires-Dist: tqdm
+Requires-Dist: openai
+Requires-Dist: sentence_transformers
+Requires-Dist: bs4
+Requires-Dist: googlesearch-python
+Requires-Dist: rouge_score
+Requires-Dist: faiss-gpu
+Requires-Dist: google-api-python-client
+Requires-Dist: privateai_client
+Requires-Dist: spacy
+Requires-Dist: llama-index-core
+Requires-Dist: llama-index-llms-openai
+Requires-Dist: pyserini
+Requires-Dist: scispacy
+Requires-Dist: pyyaml
+Requires-Dist: pydantic<2,>=1
+Requires-Dist: markdown2[all]
+Requires-Dist: numpy==1.26.4
+Requires-Dist: scikit-learn==1.2.2
+Requires-Dist: gradio==3.35.2
+Requires-Dist: gradio_client==0.2.9
+Requires-Dist: requests
+Requires-Dist: httpx==0.24.0
+Requires-Dist: uvicorn
+Requires-Dist: einops==0.6.1
+Requires-Dist: einops-exts==0.0.4
+Requires-Dist: timm==0.6.13
+Requires-Dist: transformers>=4.44.0
+Requires-Dist: jsonlines
+Provides-Extra: train
+Requires-Dist: deepspeed>=0.9.5; extra == "train"
+Requires-Dist: ninja; extra == "train"
+Requires-Dist: wandb; extra == "train"
+
+# REFLECTOOL: Towards Reflection-Aware Tool-Augmented Clinical Agents
+This is the official repository for "REFLECTOOL: Towards Reflection-Aware Tool-Augmented Clinical Agents"
+[[Webpage](https://bluezeros.github.io/ReflecTool-Page/)] [[Paper](https://arxiv.org/abs/2310.02255)] [[Huggingface Dataset](https://huggingface.co/datasets/BlueZeros/ClinicalAgentBench)] [[Leaderboard](https://mathvista.github.io/#leaderboard)]
+<p align="center">
+  <img src="./imgs/agentbench_case.png" width=90%/>
+</p>
+
+## Outlines
+- [About](./README.md#about)
+  - [ClinicalAgent Bench](./README.md#clinicalagent-bench)
+  - [ReflecTool](./README.md#reflectool)
+- [News](./README.md#news)
+- [Installations](./README.md#installations)
+  - [Environment](./README.md#environment)
+  - [Dependency](./README.md#Dependency)
+  - [ToolBox](./README.md#toolbox)
+- [Support Models](./README.md#support-models)
+- [Usage](./README.md#usage)
+- [Citation](./README.md#citation)
+
+## About
+
+### ClinicalAgent Bench
+Despite clinical agents succeeding in diverse signal interaction, they are oriented to a single clinical scenario and hence fail for broader applications. To evaluate clinical agents holistically, we propose **ClinicalAgent Bench**, a comprehensive medical agent benchmark consisting of 18 tasks across five key realistic clinical dimensions.
+
+<p align="center">
+<img src="./imgs/agentbench_overview.png" width=60%/>
+</p>
+
+### ReflecTool
+Building on this, we introduce **ReflectTool**, a novel framework that excels at utilizing domain-specific tools within two stages. **ReflectTool** can search for supportive successful demonstrations from already built long-term memory to guide the tool selection strategy, and a verifier improves the tool usage according to the tool-wise experience with two verification methods--**Iterative Refinement** and **Candidate Selection**.
+<p align="center">
+  <img src="./imgs/method_overview.png" width=90%/>
+</p>
+
+
+## News
+* 🔥 [2024/10/25] We realease the ClinicalAgent Bench, comprised 18 tasks across five capacity dimensions!
+* 🔥 [2024/10/25] We realease the code implementation of the ReflecTool!
+
+
+## Installations
+### Environment
+```bash
+conda create -n reflectool python=3.10.8
+conda activate reflectool
+# install torch
+pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu118
+# install java
+conda install -c conda-forge openjdk=21.0.4
+```
+### Dependency
+```bash
+git clone https://github.com/BlueZeros/ReflecTool.git
+cd ReflecTool
+pip install -e .
+```
+### ToolBox
+You can find details of the tools installation in [here]().
+
+## Support Models
+The support model list can be found in [model_config](./reflectool/models/config.yaml). **You should add corresponding path before using the model**. The type of the supported models are shown below:
+* **Local Models**: Huggingface models load with [AutoModelForCausalLM](https://huggingface.co/docs/transformers/main/en/model_doc/auto#transformers.AutoModelForCausalLM). We also support the [vllm](https://github.com/vllm-project/vllm) accelerate for these models.
+  * Llama3
+  * Llama3.1
+  * Qwen1.5
+  * Qwen2
+  * Qwen2.5
+* **OpenAI Models**: OpenAI Model list.
+  * GPT-3.5-turbo
+  * GPT-4o-mini
+  * GPT-4o
+* **MultiModal LLM**: HuatuoGPT-Vision and MiniCPM. 
+  * HuatuoGPT-Vision
+  * MiniCPM-V-2.6
+  * InternVL-Chat-V1.5
+
+## Usage
+### Baselines
+<details>
+  <summary>Models</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK_PATH=test
+
+OUTPUT_PATH=./results/${TASK_PATH}
+MEMORY_PATH=${DATA_PATH}/memory
+
+DATASET=medqa
+MODEL=qewn2-7b
+
+EXP_NAME=${MODEL}
+mkdir -p ${OUTPUT_PATH}/${DATASET}/${EXP_NAME}
+
+python run.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK_PATH} \
+    --test-split ${DATASET} \
+    --exp-name ${EXP_NAME} \
+    --model ${MODEL} \
+    --log-print \
+    --prompt-debug \
+    --resume
+```
+</details>
+<details>
+  <summary>Reflexion Agent</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK_PATH=test
+
+OUTPUT_PATH=./results/${TASK_PATH}
+MEMORY_PATH=${DATA_PATH}/memory
+
+DATASET="medqa"
+MODEL=qwen2-7b
+ACTIONS="all_wo_mm"
+FEWSHOT=1
+
+EXP_NAME=reflexion_${MODEL}-few_shot_${FEWSHOT}-${ACTIONS}
+mkdir -p ${OUTPUT_PATH}/${DATASET}/${EXP_NAME}
+
+python run.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK_PATH} \
+    --test-split ${DATASET} \
+    --exp-name ${EXP_NAME} \
+    --agent "reflexion" \
+    --model ${MODEL} \
+    --actions ${ACTIONS} \
+    --memory-path ${MEMORY_PATH} \
+    --memory-type "reflexion_standard" \
+    --few-shot ${FEWSHOT} \
+    --resume
+```
+</details>
+<details>
+  <summary>CRITIC Agent</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK_PATH=test
+
+OUTPUT_PATH=./results/${TASK_PATH}
+MEMORY_PATH=${DATA_PATH}/memory
+
+DATASET="medqa"
+MODEL=qwen2-72b-int4
+
+ACTIONS="all_wo_mm"
+FEWSHOT=1
+
+EXP_NAME=critic_${MODEL}-few_shot_${FEWSHOT}-${ACTIONS}
+mkdir -p ${OUTPUT_PATH}/${DATASET}/${EXP_NAME}
+
+python run.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK_PATH} \
+    --test-split ${DATASET} \
+    --exp-name ${EXP_NAME} \
+    --agent "critic" \
+    --model ${MODEL} \
+    --actions ${ACTIONS} \
+    --memory-path ${MEMORY_PATH} \
+    --memory-type "critic_standard" \
+    --few-shot ${FEWSHOT} \
+    --resume \
+    --log-print \
+    --prompt-debug
+```
+</details>
+
+### ReflecTool
+#### Optimization
+<details>
+  <summary>optimization on medqa dataset (Knowledge task example)</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK_PATH=train
+
+OUTPUT_PATH=./results/${TASK_PATH}
+MEMORY_PATH=${DATA_PATH}/my_memory
+
+domain=medqa
+MODEL=qwen2-7b
+ACTIONS="all_wo_mm" # tool type. note that `all` and `mm` actions should use 2 gpu.
+FEWSHOT=0 # num of few-shot demonstration
+
+EXP_NAME=train-${MODEL}-few_shot_${FEWSHOT}-${ACTIONS}
+mkdir -p ${OUTPUT_PATH}/${domain}/${EXP_NAME}
+
+python reflectool/train.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK_PATH} \
+    --test-split ${domain} \
+    --exp-name ${EXP_NAME} \
+    --model ${MODEL} \
+    --actions ${ACTIONS} \
+    --memory-path ${MEMORY_PATH} \
+    --max-exec-steps 15 \
+    --few-shot ${FEWSHOT} \
+    --write-memory \
+    --memory-type task \
+    --log-print \
+    --resume
+```
+</details>
+<details>
+  <summary>optimization on slake dataset (MultiModal task example)</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK_PATH=train
+
+OUTPUT_PATH=./results/${TASK_PATH}
+MEMORY_PATH=${DATA_PATH}/my_memory
+
+domain=slake
+MODEL=qwen2-7b
+ACTIONS="all" # tool type. note that `all` and `mm` actions should use 2 gpu.
+FEWSHOT=0 # num of few-shot demonstration
+
+EXP_NAME=train-${MODEL}-few_shot_${FEWSHOT}-${ACTIONS}
+mkdir -p ${OUTPUT_PATH}/${domain}/${EXP_NAME}
+
+python reflectool/train.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK_PATH} \
+    --test-split ${domain} \
+    --exp-name ${EXP_NAME} \
+    --model ${MODEL} \
+    --actions ${ACTIONS} \
+    --memory-path ${MEMORY_PATH} \
+    --max-exec-steps 15 \
+    --few-shot ${FEWSHOT} \
+    --write-memory \
+    --memory-type task \
+    --log-print \
+    --resume
+```
+</details>
+
+#### Evaluation
+<details>
+  <summary>Evaluation on medqa dataset with ReflecTool (Iterative Refinement)</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK=test
+
+OUTPUT_PATH=./results/${TASK}
+
+DATASET=medqa
+MODEL=qwen2-7b
+ACTIONS="all_wo_mm" # tool type. note that `all` and `mm` actions should use 2 gpu.
+FEWSHOT=1 # num of few-shot demonstration
+MEMORY_PATH=${DATA_PATH}/memory/task/long_term_memory/${DATASET}
+
+EXP_NAME=reflectool_refine-${MODEL}-few_shot_${FEWSHOT}-${ACTIONS}-task_memory
+mkdir -p ${OUTPUT_PATH}/${TASK}/${DATASET}/${EXP_NAME}
+
+srun -p medai_llm --quotatype=auto --gres=gpu:1 python reflectool/run.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK} \
+    --test-split ${DATASET} \
+    --exp-name ${EXP_NAME} \
+    --agent "reflectool" \
+    --model ${MODEL} \
+    --actions ${ACTIONS} \
+    --action-guide-path ${DATA_PATH}/memory/task/tool_experience/${DATASET}.json \
+    --memory-path ${MEMORY_PATH} \
+    --force-action \
+    --action-search "refine" \
+    --few-shot ${FEWSHOT} \
+    --log-print \
+    --prompt-debug \
+    --resume
+```
+</details>
+<details>
+  <summary>Evaluation on medqa dataset with ReflecTool (Candidate Selection)</summary>
+
+```bash
+DATA_PATH=./ClinicalAgentBench
+TASK=test
+
+OUTPUT_PATH=./results/${TASK}
+
+DATASET=medqa
+MODEL=qwen2-7b
+ACTIONS="all_wo_mm" # tool type. note that `all` and `mm` actions should use 2 gpu.
+FEWSHOT=1 # num of few-shot demonstration
+MEMORY_PATH=${DATA_PATH}/memory/task/long_term_memory/${DATASET}
+
+EXP_NAME=reflectool_select-${MODEL}-few_shot_${FEWSHOT}-${ACTIONS}-task_memory
+mkdir -p ${OUTPUT_PATH}/${TASK}/${DATASET}/${EXP_NAME}
+
+srun -p medai_llm --quotatype=auto --gres=gpu:1 python reflectool/run.py \
+    --data-path ${DATA_PATH} \
+    --output-path ${OUTPUT_PATH} \
+    --task-name ${TASK} \
+    --test-split ${DATASET} \
+    --exp-name ${EXP_NAME} \
+    --agent "reflectool" \
+    --model ${MODEL} \
+    --actions ${ACTIONS} \
+    --action-guide-path ${DATA_PATH}/memory/task/tool_experience/${DATASET}.json \
+    --memory-path ${MEMORY_PATH} \
+    --force-action \
+    --action-search "select" \
+    --few-shot ${FEWSHOT} \
+    --log-print \
+    --prompt-debug \
+    --resume
+```
+</details>
+
+You can find more using example in `./examples`
+### Quickly Use
+```python
+
+```
+
+
+## Citation
+

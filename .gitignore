@@ -1,0 +1,6 @@
+env/
+# data/scienceqa/images/
+
+ClinicalAgentBench/
+results/
+scripts/
