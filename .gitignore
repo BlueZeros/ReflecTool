@@ -4,3 +4,5 @@ env/
 ClinicalAgentBench/
 results/
 scripts/
+
+*.log
