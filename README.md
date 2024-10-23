@@ -15,7 +15,7 @@ This is the official repository for "REFLECTOOL: Towards Reflection-Aware Tool-A
 - [Support Models](./README.md#-support-models)
 - [Evaluation](./README.md#-evaluation)
 - [Quickly Use](./README.md#-quickly-use)
-- [Acknowledgements](./README.md#-acknowledgement)
+- [Acknowledgements](./README.md#-acknowledgements)
 - [Citation](./README.md#-citation)
 
 ## 🔦 About
@@ -88,7 +88,7 @@ cd ReflecTool
 pip install -e .
 ```
 ### ToolBox
-You can find details of the tools installation in [here]().
+You can find details of the tools installation in [here](./reflectool/actions/tool_README.md).
 
 ## 📔 Dataset
 Download the dataset `ClinicalAgentBench` from [here](https://huggingface.co/datasets/BlueZeros/ClinicalAgentBench) and put it into the temp folder. The `ClinicalAgentBench` has the structure below:
