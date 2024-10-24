@@ -1,7 +1,7 @@
 # REFLECTOOL: Towards Reflection-Aware Tool-Augmented Clinical Agents
 This is the official repository for "REFLECTOOL: Towards Reflection-Aware Tool-Augmented Clinical Agents"
 
-[[Webpage](https://bluezeros.github.io/ReflecTool-Page/)] [[Paper]()] [[Huggingface Dataset](https://huggingface.co/datasets/BlueZeros/ClinicalAgentBench)] [[Leaderboard]()]
+[[Webpage](https://bluezeros.github.io/ReflecTool-Page/)] [[Paper](https://arxiv.org/abs/2410.17657)] [[Huggingface Dataset](https://huggingface.co/datasets/BlueZeros/ClinicalAgentBench)] [[Leaderboard](https://github.com/BlueZeros/ReflecTool#-leaderboard)]
 <p align="center">
   <img src="./imgs/agentbench_case.png" width=90%/>
 </p>
