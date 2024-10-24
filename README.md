@@ -442,4 +442,13 @@ Thanks to the codebase we built upon:
 
 ## Citation
 ```bibtex
+@misc{liao2024reflectoolreflectionawaretoolaugmentedclinical,
+      title={ReflecTool: Towards Reflection-Aware Tool-Augmented Clinical Agents}, 
+      author={Yusheng Liao and Shuyang Jiang and Yanfeng Wang and Yu Wang},
+      year={2024},
+      eprint={2410.17657},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.17657}, 
+}
 ```
