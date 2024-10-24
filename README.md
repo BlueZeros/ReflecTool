@@ -67,8 +67,8 @@ Building on this, we introduce **ReflectTool**, a novel framework that excels at
 
 
 ## 💫 News
-* 🔥 [2024/10/25] We realease the ClinicalAgent Bench, comprised 18 tasks across five capacity dimensions!
-* 🔥 [2024/10/25] We realease the code implementation of the ReflecTool!
+* 🔥 [2024/10/24] We realease the ClinicalAgent Bench, comprised 18 tasks across five capacity dimensions!
+* 🔥 [2024/10/24] We realease the code implementation of the ReflecTool!
 
 
 ## 💡 Installations
