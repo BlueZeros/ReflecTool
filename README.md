@@ -98,7 +98,7 @@ ReflecTool/
 │   ├── ablations/ # subset used for analysis
 │   ├── train/ # dataset used for optimization stage
 │   ├── test/ # dataset used for evaluation
-│   ├── memory/ # few-shot sampples, long-term memory and tool experience
+│   ├── memory/ # few-shot samples, long-term memory and tool experience
 ```
 
 
