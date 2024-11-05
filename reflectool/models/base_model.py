@@ -11,7 +11,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 with open(os.path.join(current_dir, 'config.yaml'), 'r') as f:
     # 将YAML内容转换为字典
-    LOCAL_MODEL_PATHS = yaml.safe_load(f)["model"]
+    LOCAL_MODEL_PATHS = yaml.safe_load(f)
 
 def disable_torch_init():
     """
