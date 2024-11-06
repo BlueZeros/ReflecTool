@@ -3,7 +3,7 @@ import torch
 from vllm import LLM, SamplingParams
 
 from reflectool.models.base_model import Base_Model, disable_torch_init
-from reflectool.models.local_model_path import LOCAL_MODEL_PATHS
+from reflectool.models.base_model import LOCAL_MODEL_PATHS
 from reflectool.models.conversations import get_conv, SeparatorStyle
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig, StoppingCriteria, StoppingCriteriaList, LogitsProcessor, LogitsProcessorList
 from openai import OpenAI
